@@ -19,5 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ISENSmartCompanion"
+rootProject.name = "Aicompagnon"
 include(":app")
+ 

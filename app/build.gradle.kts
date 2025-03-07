@@ -2,14 +2,15 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.devtools.ksp")
 }
 
 android {
-    namespace = "com.example.isensmartcompanion"
+    namespace = "com.example.aicompagnon"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.isensmartcompanion"
+        applicationId = "com.example.aicompagnon"
         minSdk = 25
         targetSdk = 35
         versionCode = 1
@@ -26,6 +27,8 @@ android {
                 "proguard-rules.pro"
             )
         }
+        debug {
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -36,6 +39,13 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig= true
+    }
+
+    packagingOptions {
+        exclude("META-INF/INDEX.LIST")
+        exclude("META-INF/DEPENDENCIES")
+        exclude("META-INF/io.netty.versions.properties")
     }
 }
 
@@ -49,6 +59,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.firebase.appdistribution.gradle)
+    implementation(libs.androidx.runtime.livedata)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -56,4 +68,13 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(libs.androidx.navigation.compose)
+    implementation (libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation("com.google.ai.client.generativeai:generativeai:0.1.2")
+    val room_version = "2.5.0"
+    implementation("androidx.room:room-runtime:$room_version")
+    ksp("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+
 }
